@@ -14,3 +14,7 @@ class Solution:
                 return False  # invalid characters
         
         return len(stack) == 0
+sol = Solution()
+print(sol.isValid("()"))       # Output: True
+print(sol.isValid("()[]{}"))   # Output: True
+print(sol.isValid("(]"))       # Output: False
