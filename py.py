@@ -3,6 +3,6 @@ class Solution:
         return haystack.find(needle)
 
 # Example usage
-sol = Solution()
+sol = Solution()c
 print(sol.strStr("sadbutsad", "sad"))  # Output: 0
 print(sol.strStr("leetcode", "leeto"))  # Output: -1
