@@ -1,0 +1,64 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        # Step 1: Calculate the length of the linked list
+        length = 0
+        current = head
+        while current:
+            length += 1
+            current = current.next
+        
+        # Step 2: Determine the size of each part
+        part_size, extra_parts = divmod(length, k)
+        
+        # Step 3: Initialize the result list
+        result = []
+        current = head
+        
+        for i in range(k):
+            part_head = current
+            part_length = part_size + (1 if i < extra_parts else 0)
+            
+            # Step 4: Split the list for each part
+            for j in range(part_length - 1):
+                if current:
+                    current = current.next
+            
+            # Step 5: Disconnect the current part from the rest
+            if current:
+                next_part = current.next
+                current.next = None
+                current = next_part
+            
+            # Add the current part to the result
+            result.append(part_head)
+        
+        return result
+
+# Helper function to print the linked list parts
+def print_linked_list_parts(parts):
+    for part in parts:
+        current = part
+        while current:
+            print(current.val, end=" -> ")
+            current = current.next
+        print("None")
+
+# Example usage:
+if __name__ == "__main__":
+    # Creating the linked list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    nodes = [ListNode(i) for i in range(1, 11)]
+    for i in range(len(nodes) - 1):
+        nodes[i].next = nodes[i + 1]
+    head = nodes[0]
+    
+    sol = Solution()
+    parts = sol.splitListToParts(head, 3)
+    
+    # Print the result
+    print_linked_list_parts(parts)
