@@ -1,4 +1,4 @@
-# Count Number of Maximum Bitwise-OR Subsets
+
 class Solution:
     def countMaxOrSubsets(self, nums):
         # Step 1: Calculate the maximum possible bitwise OR of all elements
